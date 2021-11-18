@@ -6,6 +6,7 @@ _*
 *.swp
 *.swo
 /.libsodium
+libsodium_src
 .erlang.cookie
 .erlang.mk.packages.*
 ebin
