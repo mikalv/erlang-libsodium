@@ -7,6 +7,8 @@ PROJECT = libsodium
 
 # Configuration.
 
+LIBSODIUM_CONFIGURE_FLAGS := --disable-pie --enable-opt $(LIBSODIUM_EXTRA_CONFIGURE_FLAGS)
+
 C_SRC_DIR ?= $(CURDIR)
 C_SRC_ENV ?= $(C_SRC_DIR)/env.mk
 C_SRC_OUTPUT ?= $(CURDIR)/../priv/$(PROJECT)_drv
@@ -92,8 +94,8 @@ CXXFLAGS += -I"$(ERTS_INCLUDE_DIR)" -I"$(ERL_INTERFACE_INCLUDE_DIR)" -I"$(LIBSOD
 
 LDLIBS += -L"$(ERL_INTERFACE_LIB_DIR)" -lei "$(LIBSODIUM_OUTPUT_FILE)"
 
-LIBSODIUM_VSN ?= 1.0.11
-LIBSODIUM_DIR ?= $(BASEDIR)/.libsodium
+LIBSODIUM_VSN ?= 1.0.18
+LIBSODIUM_DIR ?= $(BASEDIR)/libsodium_src
 LIBSODIUM_GIT ?= git://github.com/jedisct1/libsodium.git
 LIBSODIUM_OUTPUT_FILE ?= $(LIBSODIUM_DIR)/src/libsodium/.libs/libsodium.a
 LIBSODIUM_CONFIGURE_FILE ?= $(LIBSODIUM_DIR)/configure
@@ -171,7 +173,7 @@ $(LIBSODIUM_CONFIGURE_FILE): $(LIBSODIUM_DIR)
 
 $(LIBSODIUM_MAKE_FILE): $(LIBSODIUM_CONFIGURE_FILE)
 	$(verbose) if [ ! -f $(LIBSODIUM_MAKE_FILE) ]; then \
-		(cd $(LIBSODIUM_DIR) && ./configure --disable-pie --enable-opt); \
+		(cd $(LIBSODIUM_DIR) && ./configure $(LIBSODIUM_CONFIGURE_FLAGS)); \
 	else \
 		true; \
 	fi
