@@ -1,10 +1,14 @@
 # libsodium asynchronous port driver
 
-[![Build Status](https://travis-ci.org/potatosalad/erlang-libsodium.svg?branch=master)](https://travis-ci.org/potatosalad/erlang-libsodium) [![Hex.pm](https://img.shields.io/hexpm/v/libsodium.svg)](https://hex.pm/packages/libsodium)
-
 [libsodium](https://libsodium.org) asynchronous port driver for Erlang and Elixir.
 
 *Work In Progress* - use at your own risk.
+
+But if you do, this version uses libsodium 1.0.18 in constrast to the ones this repo is forked from.
+
+* AES128 GCM had to go.
+* LIBSODIUM_EXTRA_CONFIGURE_FLAGS environment variable can be passed to tweak libsodium's ./configure.
+
 
 ## Installation
 
@@ -13,7 +17,7 @@ Add `libsodium` to your project's dependencies in `mix.exs`
 ```elixir
 defp deps do
   [
-    {:libsodium, "~> 0.0.10"}
+    {:libsodium, github: "mikalv/erlang-libsodium", branch: "improved"},
   ]
 end
 ```
