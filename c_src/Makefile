@@ -7,7 +7,7 @@ PROJECT = libsodium
 
 # Configuration.
 
-LIBSODIUM_CONFIGURE_FLAGS := -fPIC $(LIBSODIUM_EXTRA_CONFIGURE_FLAGS)
+LIBSODIUM_CONFIGURE_FLAGS := $(LIBSODIUM_EXTRA_CONFIGURE_FLAGS)
 
 C_SRC_DIR ?= $(CURDIR)
 C_SRC_ENV ?= $(C_SRC_DIR)/env.mk
@@ -75,7 +75,7 @@ else ifeq ($(PLATFORM),freebsd)
 	CXXFLAGS ?= -O2 -finline-functions -fstack-protector -Wall
 else ifeq ($(PLATFORM),linux)
 	CC ?= gcc
-	CFLAGS ?= -O2 -std=c99 -finline-functions -fstack-protector -Wall -Wmissing-prototypes -fstack-clash-protection
+	CFLAGS ?= -O2 -std=c99 -finline-functions -fstack-protector -Wall -Wmissing-prototypes -fstack-clash-protection -fPIC
 	CXXFLAGS ?= -O2 -finline-functions -fstack-protector -Wall
 else ifeq ($(PLATFORM),solaris)
 	CC ?= cc
